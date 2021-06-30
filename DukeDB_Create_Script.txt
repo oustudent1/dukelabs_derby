@@ -1,0 +1,41 @@
+connect 'jdbc:derby://localhost:1527/dukedb;create=true';
+create schema oracle authorization welcome1;
+
+CREATE TABLE Experiments
+		( 
+			id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY
+			(START WITH 100, INCREMENT BY 1), 
+			task VARCHAR(250) NOT NULL,
+			start_time TIMESTAMP, 
+			end_time TIMESTAMP,
+			complete BOOLEAN,
+			owner VARCHAR(250) NOT NULL DEFAULT 'DUKE',
+			CONSTRAINT exp_pk PRIMARY KEY (id) 
+		);			
+CREATE TABLE Measurements 
+	 ( id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY
+		(START WITH 1, INCREMENT BY 1),
+			value DECIMAL(10, 3) NOT NULL,
+			unit VARCHAR(10) NOT NULL,
+			time BIGINT NOT NULL,
+			exp_id INTEGER NOT NULL, 
+			CONSTRAINT mea_pk PRIMARY KEY (id),
+			FOREIGN KEY (exp_id)
+			REFERENCES Experiments (id)
+		);
+
+
+INSERT INTO Experiments (task, start_time, end_time, complete) VALUES('Measure temperature change', '2020-11-30 12:00:00', CURRENT_TIMESTAMP, true);
+INSERT INTO Experiments (task, start_time, end_time, complete) VALUES('Changes in global average surface temperature', '2015-12-31 23:59:59', null, false);
+
+-- Measurements data
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(291.25, 'K', 0, 100);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(289.55, 'K', 300, 100);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(285.55, 'K', 600, 100);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(283.45, 'K', 900, 100);
+
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(0.99, 'C', 600, 101);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(0.85, 'C', 1200, 101);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(0.93, 'C', 1500, 101);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(1.02, 'C', 1700, 101);
+INSERT INTO Measurements (value, unit, time, exp_id) VALUES(0.90, 'C', 2000, 101);

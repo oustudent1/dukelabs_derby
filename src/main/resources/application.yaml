@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  host:  javaoci.exampl.com
+javax:
+  sql:
+    DataSource:
+      dukeds:
+        dataSourceClassName: org.apache.derby.jdbc.ClientDataSource
+        dataSource:
+          user: oracle
+          password: "welcome1"
+          databaseName: dukedb
+          portNumber: 1527
+          serverName: 192.168.0.87
