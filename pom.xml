@@ -12,9 +12,7 @@
     <groupId>duke.labs</groupId>
     <artifactId>dukelabs</artifactId>
     <version>1.0-SNAPSHOT</version>
-<build>
-	<finalName>dukelabs </finalName>
-</build>
+
     <name>dukelabs</name>
 
     <dependencies>
