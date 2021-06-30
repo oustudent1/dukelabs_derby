@@ -112,7 +112,7 @@ public class ExperimentResource {
 //        return rb.build();
 //    }
 private JsonObject createResponse() {
-    String msg =  "Service is Working and Responding";
+    String msg =  "Service is Working and Responding!!";
 
     return JSON.createObjectBuilder()
             .add("message", msg)
